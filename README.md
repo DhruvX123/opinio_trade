@@ -39,3 +39,4 @@ Trade Routes
 
 POST /api/trades - Place a trade on an event
 
+Opinio.json is postman APIs for this assignment
