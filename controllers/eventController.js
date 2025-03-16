@@ -12,9 +12,9 @@ exports.getEvents = async (req, res) => {
 };
 
 exports.resolveEvent = async (req, res) => {
-  const { eventId, result } = req.body;
+  const { eventId } = req.body;
   const event = await Event.findById(eventId);
-  event.result = result;
+  //event.result = String;
   event.status = 'closed';
   await event.save();
   

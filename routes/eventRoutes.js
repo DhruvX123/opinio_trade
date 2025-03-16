@@ -5,7 +5,7 @@ const { authenticate, isAdmin } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', authenticate, isAdmin, createEvent); // Admin creates event
+router.post('/', createEvent); // Admin creates event
 router.get('/', getEvents); // Fetch all events
 router.get("/live", async (req, res) => {
     try {
@@ -15,6 +15,6 @@ router.get("/live", async (req, res) => {
       res.status(500).json({ error: "Failed to fetch live events" });
     }
   });
-router.post('/:eventId/resolve', authenticate, isAdmin, resolveEvent); // Admin resolves event
+router.post('/:eventId/resolve', resolveEvent); // Admin resolves event
 
 module.exports = router;
