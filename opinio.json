@@ -1,0 +1,88 @@
+{
+  "info": {
+    "_postman_id": "12345-67890",
+    "name": "Trading API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User Signup",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"username\": \"testuser\", \"password\": \"password123\" }"
+        },
+        "url": {"raw": "{{base_url}}/api/users/signup", "host": ["{{base_url}}"], "path": ["api", "users", "signup"]}
+      }
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"username\": \"testuser\", \"password\": \"password123\" }"
+        },
+        "url": {"raw": "{{base_url}}/api/users/login", "host": ["{{base_url}}"], "path": ["api", "users", "login"]}
+      }
+    },
+    {
+      "name": "Get All Events",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "{{base_url}}/api/events", "host": ["{{base_url}}"], "path": ["api", "events"]}
+      }
+    },
+    {
+      "name": "Create Event (Admin Only)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{auth_token}}"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"title\": \"Match A vs Match B\", \"odds\": 1.8 }"
+        },
+        "url": {"raw": "{{base_url}}/api/events", "host": ["{{base_url}}"], "path": ["api", "events"]}
+      }
+    },
+    {
+      "name": "Resolve Event (Admin Only)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{auth_token}}"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"result\": \"home\" }"
+        },
+        "url": {"raw": "{{base_url}}/api/events/:eventId/resolve", "host": ["{{base_url}}"], "path": ["api", "events", ":eventId", "resolve"]}
+      }
+    },
+    {
+      "name": "Place Trade",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{auth_token}}"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"eventId\": \"123456\", \"prediction\": \"home\", \"stake\": 100 }"
+        },
+        "url": {"raw": "{{base_url}}/api/trades", "host": ["{{base_url}}"], "path": ["api", "trades"]}
+      }
+    },
+    {
+      "name": "Settle Trades (Admin Only)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{auth_token}}"}],
+        "url": {"raw": "{{base_url}}/api/trades/:eventId/settle", "host": ["{{base_url}}"], "path": ["api", "trades", ":eventId", "settle"]}
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000" },
+    { "key": "auth_token", "value": "" }
+  ]
+}
